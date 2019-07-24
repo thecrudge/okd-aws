@@ -1,0 +1,3 @@
+DEVS=/dev/nvme1n1
+VG=docker-vg
+WIPE_SIGNATURES=true
