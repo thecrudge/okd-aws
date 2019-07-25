@@ -4,7 +4,7 @@ resource "aws_security_group" "bastion" {
   description = "Used on bastion host"
   vpc_id      = "${aws_vpc.okd.id}"
 
-  tags {
+  tags = {
     KubernetesCluster = "${var.clusterid}"
   }
 
@@ -30,7 +30,7 @@ resource "aws_security_group" "master" {
   description = "Used on masters"
   vpc_id      = "${aws_vpc.okd.id}"
 
-  tags {
+  tags = {
     KubernetesCluster = "${var.clusterid}"
   }
 
@@ -96,7 +96,7 @@ resource "aws_security_group" "infra" {
   description = "Used on app nodes"
   vpc_id      = "${aws_vpc.okd.id}"
 
-  tags {
+  tags = {
     KubernetesCluster = "${var.clusterid}"
   }
 

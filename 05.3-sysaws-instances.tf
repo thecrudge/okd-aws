@@ -6,7 +6,7 @@ resource "aws_instance" "app2" {
    vpc_security_group_ids = ["${aws_security_group.node.id}"]
    depends_on = ["aws_ebs_volume.app2"]
 
-  tags {
+  tags = {
     KubernetesCluster = "${var.clusterid}"
   }
 
@@ -20,6 +20,7 @@ resource "aws_instance" "app2" {
     user     = "${var.ami-user}"
     private_key = "${file("${var.id_rsa}")}"
     agent = false
+    host = "${aws_instance.app2.public_ip}"
   }
 
   provisioner "remote-exec" {

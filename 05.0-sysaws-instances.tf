@@ -14,7 +14,7 @@ resource "aws_instance" "bastion" {
    vpc_security_group_ids = ["${aws_security_group.bastion.id}"]
    depends_on = ["aws_instance.app1", "aws_instance.app2","aws_instance.master1"]
 
-   tags {
+   tags = {
     KubernetesCluster = "${var.clusterid}"
   }
 
@@ -23,6 +23,7 @@ resource "aws_instance" "bastion" {
     user     = "${var.ami-user}"
     private_key = "${file("${var.id_rsa}")}"
     agent = false
+    host = "${aws_instance.bastion.public_ip}"
   }
 
   provisioner "file" {
